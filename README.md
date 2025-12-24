@@ -61,6 +61,39 @@ python -m hotpp.train \
   logger.save_dir=lightning_logs \
   logger.name=amazon_beauty_detpp_gru_k48_with_bce_bs1 \
   '~logger.project'
+  
+Запуск Detpp на DetectionLoss на 3 головах на Amazon_beauty:
+
+DS=data/Amazon_Beauty/GTS-q0.9-val_last-test_random
+
+NUM_CLASSES=$(python - << 'PY'
+import json
+DS="data/Amazon_Beauty/GTS-q0.9-val_last-test_random"
+print(len(json.load(open(f"{DS}/item_map.json"))))
+PY
+)
+
+python -m hotpp.train \
+  --config-dir experiments/amazon/configs \
+  --config-name detection \
+  name=amazon_beauty_detpp_gru_k3_nextitem \
+  detection_k=3 \
+  num_classes=$NUM_CLASSES \
+  data_module.train_path=$DS/train.parquet \
+  data_module.val_path=$DS/val.parquet \
+  data_module.test_path=$DS/test3.parquet \
+  +data_module.val_params.global_target_fields='[target_labels,target_timestamps]' \
+  +data_module.test_params.global_target_fields='[target_labels,target_timestamps]' \
+  ++module.val_metric._target_=hotpp.metrics.next_item.NextItemMetric \
+  ++module.test_metric._target_=hotpp.metrics.next_item.NextItemMetric \
+  ++module.val_metric.topk='[1,5,10,20,50,100]' \
+  ++module.test_metric.topk='[1,5,10,20,50,100]' \
+  trainer.accelerator=cpu trainer.devices=1 trainer.precision=32 \
+  logger._target_=pytorch_lightning.loggers.CSVLogger \
+  logger.save_dir=lightning_logs \
+  logger.name=amazon_beauty_detpp_gru_k3_nextitem \
+  '~logger.project' \
+  hydra.job.chdir=false
 
 Запуск Detpp на NextItemLoss на 1 голове на Amazon_beauty:
 
