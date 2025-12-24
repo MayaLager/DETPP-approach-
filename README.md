@@ -3,6 +3,7 @@ The team project as topic: Time interval modelling with DETPP approach
 
 Основа кода взята из https://github.com/ivan-chai/hotpp-benchmark
 
+Скрипты запусков из hotpp-benchmark
 
 Запуск с трансформером + no BCE:
 
@@ -42,7 +43,7 @@ python -m hotpp.train \
 
   Запуск с BCE + GRU:
 
-  hotpp-benchmark % python -m hotpp.train \
+  python -m hotpp.train \
   --config-path "$(pwd)/experiments/amazon/configs" \
   --config-name detection \
   name=amazon_beauty_detpp_gru_k48_with_bce_bs1 \
@@ -61,9 +62,9 @@ python -m hotpp.train \
   logger.name=amazon_beauty_detpp_gru_k48_with_bce_bs1 \
   '~logger.project'
 
-  Запуск Detpp на NextItemLoss на 1 голове на Amazon_beauty:
+Запуск Detpp на NextItemLoss на 1 голове на Amazon_beauty:
 
-  DS="data/Amazon_Beauty/GTS-q0.9-val_last-test_random"
+DS="data/Amazon_Beauty/GTS-q0.9-val_last-test_random"
 
 NUM_CLASSES=$(python - << 'PY'
 import json
