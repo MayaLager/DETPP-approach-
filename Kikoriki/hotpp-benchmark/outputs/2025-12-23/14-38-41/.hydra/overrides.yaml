@@ -1,0 +1,15 @@
+- name=detection_gru_baseline
+- num_classes=12067
+- data_module.train_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/train.parquet
+- data_module.val_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/val.parquet
+- data_module.test_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/test1.parquet
+- +data_module.val_params.global_target_fields=[target_labels,target_timestamps]
+- +data_module.test_params.global_target_fields=[target_labels,target_timestamps]
+- trainer.accelerator=cpu
+- trainer.devices=1
+- trainer.precision=32
+- data_module.num_workers=0
+- logger._target_=pytorch_lightning.loggers.CSVLogger
+- logger.save_dir=lightning_logs
+- logger.name=detection_gru_baseline
+- ~logger.project

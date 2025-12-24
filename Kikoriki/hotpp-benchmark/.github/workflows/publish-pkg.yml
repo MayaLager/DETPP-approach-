@@ -1,0 +1,47 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Upload Python Package
+
+on:
+  pull_request:
+    branches: ["main"]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      HOTPP_PUBLISH: true
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.13'
+    - name: Build package
+      run: |
+        pip install -U build setuptools
+        pip install --no-build-isolation torch \
+          --find-links "https://download.pytorch.org/whl/cpu/torch_stable.html"
+        python -m build -n --wheel
+        ls -lh dist/
+    - name: Try to install package
+      run: |
+        pip install --no-build-isolation dist/*.whl
+        pip list
+    - name: Publish package
+      if: github.event_name == 'release'
+      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}

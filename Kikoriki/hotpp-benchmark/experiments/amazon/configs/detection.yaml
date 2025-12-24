@@ -1,0 +1,14 @@
+defaults:
+  - detection_base
+  - _self_
+
+detection_k: 48
+
+module:
+  loss:
+    loss_subset: 0.25
+    prefetch_factor: 0.75
+    match_weights:
+      _presence: 4
+      timestamps: 0.5
+      labels: 0.8

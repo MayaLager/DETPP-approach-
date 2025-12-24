@@ -1,0 +1,17 @@
+- name=amazon_beauty_detpp_gru_k1_test1
+- detection_k=1
+- num_classes=12067
+- metric.horizon=1
+- metric.otd_steps=1
+- data_module.train_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/train.parquet
+- data_module.val_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/val.parquet
+- data_module.test_path=data/Amazon_Beauty/GTS-q0.9-val_last-test_random/test1.parquet
+- +data_module.val_params.global_target_fields=[target_labels,target_timestamps]
+- +data_module.test_params.global_target_fields=[target_labels,target_timestamps]
+- trainer.accelerator=cpu
+- trainer.devices=1
+- trainer.precision=32
+- logger._target_=pytorch_lightning.loggers.CSVLogger
+- logger.save_dir=lightning_logs
+- logger.name=amazon_beauty_detpp_gru_k1_test1
+- ~logger.project

@@ -1,0 +1,5 @@
+defaults:
+  - ode_base
+  - _self_
+
+max_intensity: 4  # Prevent large mass at zero.

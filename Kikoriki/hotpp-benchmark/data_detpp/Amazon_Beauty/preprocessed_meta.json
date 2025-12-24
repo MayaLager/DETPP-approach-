@@ -1,0 +1,8 @@
+{
+  "rows_raw": 198502,
+  "rows_final": 198502,
+  "n_users": 22363,
+  "n_items": 12101,
+  "k_user": 5,
+  "k_item": 5
+}

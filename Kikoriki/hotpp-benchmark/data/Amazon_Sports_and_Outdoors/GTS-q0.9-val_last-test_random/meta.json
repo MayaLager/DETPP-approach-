@@ -1,0 +1,63 @@
+{
+  "split_type": "GTS",
+  "quantile": 0.9,
+  "t_cut": 1398470400.0,
+  "val_target": "last_pre_cut",
+  "test_target": "random_post_cut",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "min_pre_events_for_val": 2,
+  "require_test_target_in_train": true,
+  "counts": {
+    "test1": {
+      "n_users_total_candidates": 8859,
+      "n_users_kept": 8523,
+      "skipped_no_valid_target": 336,
+      "n_input_rows": 72982,
+      "n_target_rows": 8523
+    },
+    "test2": {
+      "n_users_total_candidates": 8859,
+      "n_users_kept": 8523,
+      "skipped_no_valid_target": 336,
+      "n_input_rows": 72919,
+      "n_target_rows": 8523
+    },
+    "test3": {
+      "n_users_total_candidates": 8859,
+      "n_users_kept": 8523,
+      "skipped_no_valid_target": 336,
+      "n_input_rows": 72905,
+      "n_target_rows": 8523
+    },
+    "test4": {
+      "n_users_total_candidates": 8859,
+      "n_users_kept": 8523,
+      "skipped_no_valid_target": 336,
+      "n_input_rows": 72847,
+      "n_target_rows": 8523
+    },
+    "test5": {
+      "n_users_total_candidates": 8859,
+      "n_users_kept": 8523,
+      "skipped_no_valid_target": 336,
+      "n_input_rows": 72938,
+      "n_target_rows": 8523
+    },
+    "global": {
+      "n_rows_total": 296337,
+      "n_rows_pre": 266661,
+      "n_rows_post": 29676,
+      "n_users_total": 35598,
+      "n_users_eligible_val": 34196,
+      "n_users_eligible_test": 8859,
+      "n_items_total": 18357,
+      "n_items_train": 18167
+    }
+  }
+}

@@ -1,0 +1,16 @@
+- name=amazon_beauty_detpp_gru_k48_no_bce_bs1
+- detection_k=48
+- num_classes=12067
+- ++module.loss.presence_loss_weight=0.0
+- ++data_module.batch_size=4
+- data_module.train_path=/Users/macbook/Desktop/Kikoriki/hotpp-benchmark/experiments/amazon/data/train.parquet
+- data_module.val_path=/Users/macbook/Desktop/Kikoriki/hotpp-benchmark/experiments/amazon/data/val.parquet
+- data_module.test_path=/Users/macbook/Desktop/Kikoriki/hotpp-benchmark/experiments/amazon/data/test.parquet
+- trainer.accelerator=mps
+- trainer.devices=1
+- trainer.precision=32
+- data_module.num_workers=0
+- logger._target_=pytorch_lightning.loggers.CSVLogger
+- logger.save_dir=lightning_logs
+- logger.name=amazon_beauty_detpp_gru_k48_no_bce_bs1
+- ~logger.project

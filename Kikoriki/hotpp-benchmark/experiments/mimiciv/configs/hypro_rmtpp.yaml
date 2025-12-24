@@ -1,0 +1,8 @@
+defaults:
+  - hypro_rmtpp_base
+  - _self_
+
+max_predictions: 8
+
+trainer:
+  check_val_every_n_epoch: 10000

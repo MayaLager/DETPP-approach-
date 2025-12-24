@@ -1,0 +1,7 @@
+- trainer.accelerator=mps
+- trainer.devices=1
+- trainer.precision=32
+- data_module.num_workers=0
+- logger._target_=pytorch_lightning.loggers.CSVLogger
+- logger.save_dir=lightning_logs
+- logger.name=detection_gru
